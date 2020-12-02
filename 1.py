@@ -1,8 +1,4 @@
-with open("1.txt","r") as f, open("1.txt","r") as g,open("1.txt","r") as l:
-    for h in f:
-        g.seek(0)
-        for j in g:
-            l.seek(0)
-            for b in l:
-                if h.strip() and j.strip() and b.strip() and (int(h)+int(j)+int(b))==2020:
-                    print("%s %s %s %s" % (h.strip(),j.strip(),b.strip(),int(h)*int(j)*int(b)))
+with open("1.txt", "r") as f:
+    af = f.readlines()
+    [[print(int(y) * int(x)) for y in af if int(x) + int(y) == 2020] for x in af]
+    [[[print(int(y) * int(x) * int(z)) for z in af if int(x) + int(y) + int(z) == 2020] for y in af] for x in af]
