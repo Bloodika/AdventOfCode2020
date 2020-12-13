@@ -18,7 +18,7 @@ def search_for_loop(lines):
         except:
             print("haha",acc)
 
-    return {"acc": acc, "in_list": (index not in steps)}
+    return acc
 
 
 def search_in_list(s, li):
@@ -30,26 +30,22 @@ def search_in_list(s, li):
 
 
 def fix_loop(lines):
-    steps = []
-    index = 0
-    acc = 0
-    found = False
     nops = search_in_list("nop", lines)
     jmps = search_in_list("jmp", lines)
     for i in nops:
         copy_lines = copy.deepcopy(lines)
         copy_lines[i] = copy_lines[i].replace("nop", "jmp")
-        print(search_for_loop(copy_lines))
+        search_for_loop(copy_lines)
     for j in jmps:
         copy_lines = copy.deepcopy(lines)
         copy_lines[j] = copy_lines[j].replace("jmp", "nop")
-        print(search_for_loop(copy_lines))
+        search_for_loop(copy_lines)
 
 
 def main():
     with open("8.txt", "r") as f:
         lines = f.readlines()
-        search_for_loop(lines)
+        print(search_for_loop(lines))
         fix_loop(lines)
 
 
